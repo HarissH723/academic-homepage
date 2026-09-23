@@ -2,33 +2,36 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+subtitle: Undergraduate researcher in microelectronics · Shenzhen, China
 
 profile:
   align: right
   image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
+  image_circular: false
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>Southern University of Science and Technology</p>
+    <p>Shenzhen, China</p>
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
-
+selected_papers: true
+social: false
 announcements:
-  enabled: true # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
-
+  enabled: false
 latest_posts:
-  enabled: true
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
+  enabled: false
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](https://www.reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+I am **Qunsheng Hou**, an undergraduate researcher in Microelectronics at the Southern University of Science and Technology (SUSTech). I work at the intersection of **memristive devices**, **device-aware computing**, and **efficient AI hardware**.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+My research asks how non-ideal physical devices can become useful computing substrates. I am interested in co-designing devices, circuits, and algorithms for neuromorphic and in-memory systems, with an emphasis on efficient learning under hardware constraints.
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+## Research interests
+
+- **Memristive devices and neuromorphic hardware** — device physics, analog conductance modulation, and experimental characterization.
+- **Device-aware in-memory computing** — mapping real device behavior into robust computing architectures and algorithms.
+- **Efficient AI systems** — continual learning and embodied intelligence under practical resource constraints.
+
+## Current focus
+
+I am conducting research in the Zhongrui Wang Lab, exploring memristive-device-based computing and hardware-aware learning. I am preparing for PhD study beginning in 2027.
+
+For research inquiries, please contact me at [12312205@mail.sustech.edu.cn](mailto:12312205@mail.sustech.edu.cn).
