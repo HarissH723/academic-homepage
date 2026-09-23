@@ -2,7 +2,6 @@
 layout: page
 title: Embodied Vision-Language-Action System
 description: A prototype that connects NVIDIA GR00T with the Unitree G1-D platform.
-img: 
 importance: 1
 category: systems
 ---
