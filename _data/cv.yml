@@ -4,7 +4,7 @@ cv:
   email: 12312205@mail.sustech.edu.cn
   location: Shenzhen, China
   image: ""
-  summary: Researcher working on memristive devices, device-aware computing, and efficient AI hardware.
+  summary: Research on memristive devices, in-memory computing, device-aware learning, and efficient AI hardware.
 
   social_networks:
     - network: GitHub
@@ -20,7 +20,7 @@ cv:
         end_date: 2027
         score: "GPA: 3.72/4.00"
         highlights:
-          - Expected graduation: July 2027.
+          - Expected graduation in July 2027.
 
     Research Experience:
       - company: Zhongrui Wang Lab, Southern University of Science and Technology
@@ -29,36 +29,47 @@ cv:
         start_date: July 2024
         end_date: present
         highlights:
-          - Research on memristive devices, neuromorphic hardware, and device-aware computing.
-          - Explore analog in-memory computing and continual-learning algorithms under hardware constraints.
+          - Studied adaptive programming of resistive memory for robust class-incremental learning.
+          - Built device-variability-aware array simulations and robustness-testing workflows.
+          - Analyzed learning behavior with PCA, t-SNE, feature maps, and confusion matrices.
+      - company: Southern University of Science and Technology
+        position: Semiconductor Device Fabrication and Characterization
+        location: Shenzhen, China
+        start_date: March 2026
+        end_date: May 2026
+        highlights:
+          - Fabricated Ta/Al2O3 capacitors using photolithography, LPCVD, ALD, sputtering, ICP etching, and rapid thermal annealing.
+          - Conducted C–V characterization and SEM-based failure analysis.
 
     Publications:
-      - title: "Publication in Advanced Materials"
-        authors: "Y. Li, J. Yang, Q. Hou, et al."
+      - title: Adaptive Redox Resistive Memory Programming for Efficient and Robust Class-Incremental Learning
+        authors: Yi Li, Jichang Yang, Qunsheng Hou, et al.
         publisher: Advanced Materials
         releaseDate: 2026
         url: https://doi.org/10.1002/adma.202600025
-        summary: Co-first author.
+        summary: Yi Li, Jichang Yang, and Qunsheng Hou are co-first authors.
 
     Projects:
-      - name: Embodied VLA System
+      - name: Vision-Language-Action Manipulation and Residual Reinforcement Learning
         highlights:
-          - Built a vision-language-action prototype with NVIDIA GR00T and Unitree G1-D.
+          - Led a four-person team investigating residual reinforcement learning and parameter-efficient GR00T fine-tuning.
+          - Developed data, evaluation, and inference workflows for SO101 and Unitree G1-D.
       - name: RV32I RISC-V Processor
         highlights:
-          - Implemented an RV32I processor reaching 185 MHz.
+          - Led a three-person team designing a five-stage pipelined CPU with branch prediction and a four-way set-associative cache.
+          - Verified the design on a Xilinx Nexys A7 FPGA at 185 MHz.
       - name: Ta/Al2O3 Capacitor Fabrication
         highlights:
-          - Fabricated and characterized Ta/Al2O3 capacitors from March to May 2026.
+          - Fabricated and characterized capacitor structures from March to May 2026.
 
     Skills:
-      - name: Research
-        keywords: "Memristive devices, neuromorphic hardware, analog in-memory computing, device-aware algorithms, continual learning"
-      - name: Engineering
-        keywords: "Microelectronics, RISC-V, embodied AI systems"
+      - name: Programming and Machine Learning
+        keywords: Python, deep learning, continual learning, data analysis and visualization
+      - name: Devices and Hardware
+        keywords: Memristor-array simulation, cleanroom fabrication, C–V measurement, SEM, Verilog, FPGA prototyping
 
     Awards:
-      - title: Academic and innovation awards
-        date: 2023-2026
-        awarder: Southern University of Science and Technology
-        summary: Details retained in the source CV and can be expanded when provided for publication.
+      - title: Second Prize, South China Division, National College Student Integrated Circuit Innovation and Entrepreneurship Competition
+        date: July 2025
+      - title: Third Prize, FPGA Track, National Undergraduate Embedded Chip and System Design Contest
+        date: December 2025

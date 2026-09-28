@@ -41,7 +41,7 @@ I am pursuing a B.Eng. in Microelectronics at SUSTech (expected July 2027; GPA 3
 
 ## Selected publication
 
-Y. Li†, J. Yang†, **Q. Hou†**, et al. “Adaptive Redox Resistive Memory Programming for Efficient and Robust Class-Incremental Learning.” *Advanced Materials*, 2026. †Co-first authors. [DOI](https://doi.org/10.1002/adma.202600025)
+Y. Li†, J. Yang†, **Q. Hou†**, et al. “Adaptive Redox Resistive Memory Programming for Efficient and Robust Class-Incremental Learning.” _Advanced Materials_, 2026. †Co-first authors. [DOI](https://doi.org/10.1002/adma.202600025)
 
 ## Contact
 
