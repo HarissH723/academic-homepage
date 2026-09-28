@@ -12,4 +12,4 @@ I study how non-ideal resistive-memory behavior shapes efficient and robust lear
 
 My contributions include Python simulation of device variability in two-dimensional memristor arrays, robustness-testing workflows, and PCA, t-SNE, feature-map, and confusion-matrix analyses for MobileNet-based class-incremental learning on CIFAR-100.
 
-The related study appeared in *Advanced Materials* in 2026. [Publication and DOI]({{ '/publications/' | relative_url }}).
+The related study appeared in _Advanced Materials_ in 2026. [Publication and DOI]({{ '/publications/' | relative_url }}).
