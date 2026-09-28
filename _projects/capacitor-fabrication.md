@@ -1,9 +1,13 @@
 ---
 layout: page
-title: Ta/Al2O3 Capacitor Fabrication
-description: Thin-film device fabrication project for microelectronic device research.
+title: Ta/Al₂O₃ Capacitor Fabrication
+description: Cleanroom processing, electrical characterization, and failure analysis.
 importance: 2
 category: research
 ---
 
-Fabricated Ta/Al2O3 capacitor structures from March to May 2026. This work supported hands-on study of thin-film device processing and the physical characteristics relevant to emerging electronic devices.
+**SUSTech · March–May 2026**
+
+I fabricated Ta/Al₂O₃-based capacitor structures using RCA cleaning, photolithography and alignment, LPCVD, ALD, Ta sputtering, ICP etching, and rapid thermal annealing.
+
+I performed C–V characterization and SEM-based failure analysis to study the effect of tantalum oxidation on capacitance and device integrity. This project strengthened my understanding of how processing choices affect measured device behavior.
