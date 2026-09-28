@@ -11,7 +11,7 @@ My research connects the physics of emerging memory devices with learning algori
 
 ## Adaptive resistive-memory programming for continual learning
 
-As an undergraduate researcher in the Zhongrui Wang Lab at SUSTech (July 2024–present), I study memristor-aware class-incremental learning. Our work examines programming stochasticity and selective updating of high-impact weights to reduce programming overhead and mitigate forgetting. I contributed device-variability-aware array simulation, robustness-testing workflows, and PCA and confusion-matrix analyses. The resulting study appeared in *Advanced Materials* in 2026. [Read the publication]({{ '/publications/' | relative_url }}).
+As an undergraduate researcher in the Zhongrui Wang Lab at SUSTech (July 2024–present), I study memristor-aware class-incremental learning. Our work examines programming stochasticity and selective updating of high-impact weights to reduce programming overhead and mitigate forgetting. I contributed device-variability-aware array simulation, robustness-testing workflows, and PCA and confusion-matrix analyses. The resulting study appeared in _Advanced Materials_ in 2026. [Read the publication]({{ '/publications/' | relative_url }}).
 
 ## Ta/Al₂O₃ device fabrication and characterization
 
