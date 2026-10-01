@@ -11,11 +11,16 @@ cleanup() {
 trap cleanup EXIT
 
 cat >"${tmp_override}" <<'YAML'
+# This test checks that the comment plugins render *when configured*, so it
+# configures both of them here. The site's own `_config.yml` deliberately leaves
+# the deprecated Disqus integration unset, which is why the shortname has to be
+# supplied from the override rather than relied on from the site config.
 giscus:
   repo: alshedivat/al-folio
   repo_id: R_kgDOExample
   category: Comments
   category_id: DIC_kwDOExample
+disqus_shortname: al-folio
 YAML
 
 bundle exec jekyll build --config "_config.yml,${tmp_override}" -d "${tmp_site}" >/dev/null
