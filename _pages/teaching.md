@@ -5,6 +5,7 @@ title: teaching
 description: Course materials, schedules, and resources for classes taught.
 nav: false
 nav_order: 6
+sitemap: false # template demo page: built for the visual suite, never advertised
 calendar: true
 ---
 

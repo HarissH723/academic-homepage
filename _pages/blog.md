@@ -4,6 +4,7 @@ permalink: /blog/
 title: blog
 nav: false
 nav_order: 1
+sitemap: false # sample blog index: built for the integration/visual suites, never advertised
 pagination:
   enabled: true
   collection: posts

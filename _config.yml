@@ -8,11 +8,12 @@ last_name: Hou
 contact_note: >
   Prospective PhD applicant in microelectronics and AI hardware.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Personal academic homepage of Qunsheng Hou.
+  Academic homepage of Qunsheng Hou, an undergraduate researcher at SUSTech working on memristive
+  devices, in-memory computing, device-aware learning, and efficient AI hardware.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-keywords: memristive devices, neuromorphic computing, in-memory computing, efficient AI hardware # add your own keywords or leave empty
+keywords: memristive devices, RRAM, in-memory computing, neuromorphic computing, device-aware learning, continual learning, AI hardware, microelectronics # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 apple_touch_icon: # image name in /assets/img/ (or a rooted path / absolute URL) used for iOS home-screen bookmarks; needs a real 180x180 PNG, since Safari ignores the emoji favicon above. Left empty, iOS falls back to a screenshot of the page.
@@ -109,7 +110,7 @@ max_width: 1040px
 # see https://schema.org/docs/faq.html for more information
 serve_og_meta: true # Include Open Graph meta tags in the HTML head
 serve_schema_org: true # Include Schema.org in the HTML head
-og_image: # The site-wide (default for all links) Open Graph preview image
+og_image: https://harissh723.github.io/academic-homepage/assets/img/prof_pic.jpg # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
@@ -133,8 +134,8 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: al-folio # blog_name will be displayed in your blog page
-blog_description: a simple whitespace theme for academics
+blog_name: Qunsheng Hou # blog_name will be displayed in your blog page
+blog_description: Notes and occasional writing.
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 
@@ -163,7 +164,7 @@ giscus:
   lang: en
 
 # Disqus comments (DEPRECATED)
-disqus_shortname: al-folio # put your disqus shortname
+disqus_shortname: # put your disqus shortname
 # https://help.disqus.com/en/articles/1717111-what-s-a-shortname
 
 # External sources.
@@ -247,6 +248,37 @@ exclude:
   - gems/
   - migrations/
   - vendor
+  # --- Hidden template/demo content -----------------------------------------
+  # Kept in the repository but kept out of the built site. Blog, teaching and
+  # repositories are deliberately NOT excluded: test/visual/interactions.spec.js
+  # loads those routes, so removing them would break the visual suite.
+  - _pages/books.md
+  - _pages/dropdown.md
+  - _pages/news.md
+  - _pages/plugins.md
+  - _pages/profiles.md
+  # Emptying these collections is what keeps the shipped sample books, news and
+  # courses out of the search index (al_search indexes every collection document).
+  - _books/
+  - _news/
+  - _teachings/
+  # Demo media referenced only by the sample posts, the README or the docs.
+  - assets/audio/
+  - assets/html/
+  - assets/jupyter/
+  - assets/plotly/
+  - assets/rendercv/
+  - assets/video/
+  - assets/img/book_covers/
+  - assets/img/publication_preview/
+  - assets/img/prof_pic_color.png
+  - assets/img/rhino.png
+  - assets/img/star-history-dark.svg
+  - assets/img/star-history-light.svg
+  - assets/img/template_error.png
+  - assets/json/resume.json
+  - assets/pdf/example_pdf.pdf
+  - test/
 keep_files:
   - CNAME
   - .nojekyll
@@ -302,6 +334,12 @@ plugins:
 defaults:
   - scope:
       path: "assets"
+    values:
+      sitemap: false
+  # The sample posts stay built (the integration and visual suites load them),
+  # but they must never be advertised to crawlers.
+  - scope:
+      type: "posts"
     values:
       sitemap: false
 
