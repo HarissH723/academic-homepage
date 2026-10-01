@@ -2,7 +2,7 @@
 layout: page
 title: Projects
 permalink: /projects/
-description: Selected research and engineering projects across devices, hardware, and embodied AI.
+description: Selected research and engineering projects — RRAM device-aware computing, Ta/Al2O3 capacitor fabrication, an RV32I RISC-V processor at 185 MHz, and Unitree G1-D / SO-101 vision-language-action robotics.
 nav: true
 nav_order: 4
 display_categories: [research, systems]

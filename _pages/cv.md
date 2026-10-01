@@ -6,7 +6,7 @@ nav: true
 nav_order: 5
 cv_pdf: /assets/pdf/Qunsheng_Hou_CV.pdf
 cv_format: rendercv
-description: View or download my current academic CV (September 2026).
+description: Academic CV of Qunsheng Hou (SUSTech) — education, research experience, publications, projects, skills, and awards. View or download the PDF.
 toc:
   sidebar: left
 ---

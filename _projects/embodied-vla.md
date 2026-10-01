@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Vision-Language-Action Robotics
+title: Embodied Vision-Language-Action Systems
 description: Model fine-tuning and manipulation workflows on SO101 and Unitree G1-D.
 importance: 2
 category: systems
