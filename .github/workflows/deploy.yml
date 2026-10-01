@@ -58,27 +58,28 @@ on:
   workflow_dispatch:
 
 # ---------------------------------------------------------------------------
-# Why this workflow publishes to the `gh-pages` branch instead of using
-# actions/deploy-pages
-# ---------------------------------------------------------------------------
-# The repository's `github-pages` environment carries a deployment branch rule
-# that only allows `gh-pages`. `actions/deploy-pages` must deploy *through* that
-# environment, and declaring `environment: github-pages` makes GitHub enforce
-# the rule before any step runs, so a push to `main` fails the whole job with:
-#
+# If this workflow ever fails with
 #   Branch "main" is not allowed to deploy to github-pages due to environment
 #   protection rules.
+# then the fix is NOT in this file. `actions/deploy-pages` deploys *through* the
+# `github-pages` environment, and that environment carries a custom branch
+# policy listing the branches allowed to deploy to it. The job is rejected
+# before any step runs, which is why such a failure shows no step output.
 #
-# Publishing the built site to the `gh-pages` branch satisfies the rule — it is
-# exactly what the legacy "pages build and deployment" run already does from
-# that branch. The trade-off: this requires Pages to be configured as
-#   Settings -> Pages -> Source: Deploy from a branch -> gh-pages -> /(root)
-#
-# To switch back to the Actions deployment instead, relax the rule in
 #   Settings -> Environments -> github-pages -> Deployment branches and tags
-# and restore the `environment:` block plus the upload/deploy-pages steps.
+#
+# must list the branch being deployed (`main`). Both `main` and `gh-pages` are
+# listed for this repository, and a workflow_dispatch run from `main` deploys
+# successfully.
+#
+# Note that Pages is configured with `build_type: workflow` (Settings -> Pages
+# -> Source: GitHub Actions), so pushing a built site to a branch — what the
+# workflow briefly did — is ignored by Pages. Only the artifact uploaded below
+# is published.
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages-deploy
@@ -86,11 +87,17 @@ concurrency:
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     # available images: https://github.com/actions/runner-images#available-images
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
+      - name: Configure Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
       - name: Setup Ruby 💎
         uses: ruby/setup-ruby@v1
         with:
@@ -125,17 +132,12 @@ jobs:
         run: |
           npm install -g purgecss
           purgecss -c purgecss.config.js
-      # Pull requests only build, so a broken site is caught before it can be
-      # published; the publish step below is skipped for them.
-      - name: Publish to gh-pages 🚀
+      - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
-        uses: peaceiris/actions-gh-pages@v4
+        uses: actions/upload-pages-artifact@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
-          publish_branch: gh-pages
-          # GitHub Pages must serve the already-built output as-is.
-          enable_jekyll: false
-          user_name: "github-actions[bot]"
-          user_email: "github-actions[bot]@users.noreply.github.com"
-          commit_message: "deploy: ${{ github.sha }}"
+          path: _site
+      - name: Deploy to GitHub Pages
+        if: github.event_name != 'pull_request'
+        id: deployment
+        uses: actions/deploy-pages@v4
