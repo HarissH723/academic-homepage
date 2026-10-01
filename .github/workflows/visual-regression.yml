@@ -1,22 +1,17 @@
 name: Visual regression checks
 
+# This suite pixel-diffs the candidate build against an upstream `v0.16.3`
+# worktree, and that tag only exists in the template repository. A site created
+# from the template carries no tags, so "Prepare baseline worktree (v0.16.3)"
+# fails before a single test runs — on every pull request, for reasons that have
+# nothing to do with the change under review. It is therefore no longer wired to
+# `pull_request`; run it on demand after fetching the upstream tags:
+#
+#   git fetch https://github.com/alshedivat/al-folio.git --tags
+#
+# The parity thresholds also assume template content, so expect deliberate
+# failures on a personalized site once the baseline resolves.
 on:
-  pull_request:
-    branches: [main, master, v1.0-dev]
-    paths:
-      - "_config.yml"
-      - "_data/**"
-      - "_bibliography/**"
-      - "_pages/**"
-      - "_posts/**"
-      - "_projects/**"
-      - "assets/**"
-      - "test/visual/**"
-      - ".github/workflows/visual-regression.yml"
-      - "package.json"
-      - "package-lock.json"
-      - "Gemfile"
-      - "Gemfile.lock"
   push:
     branches: [v1.0-dev]
     paths:
@@ -33,6 +28,7 @@ on:
       - "package-lock.json"
       - "Gemfile"
       - "Gemfile.lock"
+  workflow_dispatch:
 
 jobs:
   visual-regression:

@@ -1,0 +1,285 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@charset "utf-8";
+
+/* ---------------------------------------------------------------------------
+   Site-level override of the gem-owned `al_folio_core` `assets/css/main.scss`.
+   A site file with the same path takes precedence over the theme gem's copy, so
+   this file must mirror the upstream import list exactly and then add the local
+   design block at the bottom.
+
+   Mirrors al_folio_core 1.0.15. When the gem bumps, re-sync the `@use` list
+   below before touching anything else.
+--------------------------------------------------------------------------- */
+
+/* Built-in Sass modules you’ll likely use across partials */
+@use "sass:math";
+@use "sass:string";
+
+/* Configure your design tokens BEFORE loading any of your partials.
+   Make sure `_sass/_variables.scss` declares `$max-content-width: 72rem !default;`
+
+   Upstream interpolates `{{ site.max_width }}` here. It is hard-coded because
+   `npx prettier . --check` parses this file as SCSS and chokes on Liquid tags,
+   which would fail the `Prettier code formatter` check. Keep this value in sync
+   with `max_width` in `_config.yml`. */
+@use "variables" with (
+  $max-content-width: 1040px
+);
+
+/* Your project partials — convert these files to `@use "variables";`
+   (or `@use "variables" as *;`) inside each file and qualify variables if needed. */
+@use "themes";
+@use "layout";
+
+// Core styles organized by usage
+@use "typography";
+@use "navbar";
+@use "footer";
+@use "blog";
+@use "publications";
+@use "components";
+@use "utilities";
+
+// Other specialized styles
+@use "tabs";
+@use "teachings";
+@use "typograms";
+
+/* ===========================================================================
+   LOCAL DESIGN OVERRIDES
+   ---------------------------------------------------------------------------
+   Deliberately restrained: typography and rhythm, one hairline section
+   divider, and the small blocks used by `_pages/about.md`. Every colour comes
+   from the theme tokens (`--global-*`), so light and dark mode are both served
+   by the same rules.
+
+   Do not restyle the following — `test/visual/interactions.spec.js` asserts
+   their computed styles: `:not(pre) > code` (font-size < 16px, weight <= 400),
+   `.related-posts a`, `.af-page-link`, `.projects .hoverable:hover`,
+   `#search-toggle` / `#light-toggle` cursors, `#toc-sidebar`, `#calendar-toggle-btn`,
+   `.abstract.hidden`.
+   (That suite only runs where a v0.16.3 baseline worktree exists, but keeping
+   the contract intact costs nothing.)
+=========================================================================== */
+
+/* --- Typography and reading rhythm ---------------------------------------- */
+
+body {
+  font-family:
+    Roboto,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  /* 300 is thin for long-form text at 16px; 400 reads better and the heading
+     weight is set separately below. */
+  font-weight: 400;
+}
+
+.post article p,
+.post article li {
+  line-height: 1.7;
+}
+
+.post article p {
+  margin-bottom: 1rem;
+}
+
+/* Content headings only: `.bibliography` (publications) and `.category`
+   (projects) are layout headings rendered from Liquid, not page content. */
+.post article h2:not(.bibliography):not(.category) {
+  margin-top: 2.25rem;
+  margin-bottom: 0.85rem;
+  font-weight: 500;
+}
+
+.post article h3 {
+  font-weight: 500;
+}
+
+.post-header .desc,
+.post-header .post-description {
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+/* --- About page: identity line, note and quick links ---------------------- */
+
+.qs-tagline {
+  margin: 0 0 0.35rem;
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+
+.qs-note {
+  margin: 0.15rem 0 0.35rem;
+  font-size: 0.92rem;
+  color: var(--global-text-color-light);
+}
+
+.qs-arc {
+  margin: 1rem 0 0;
+  font-size: 0.95rem;
+  color: var(--global-text-color-light);
+}
+
+.qs-quicklinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.55rem;
+  margin: 0.9rem 0 0.35rem;
+}
+
+.qs-quicklinks a {
+  padding: 0.22rem 0.8rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 999px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--global-text-color);
+  text-decoration: none;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.qs-quicklinks a:hover {
+  color: var(--global-theme-color);
+  border-color: var(--global-theme-color);
+  text-decoration: none;
+}
+
+/* --- Hairline section divider:  ──────── ◇ ────────  --------------------- */
+
+.qs-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 2.4rem 0 1.6rem;
+  line-height: 1;
+}
+
+.qs-divider::before,
+.qs-divider::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  background-color: var(--global-divider-color);
+}
+
+.qs-divider span {
+  font-size: 0.7rem;
+  color: var(--global-text-color-light);
+  opacity: 0.8;
+}
+
+/* --- Research focus cards ------------------------------------------------- */
+
+.qs-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+  margin: 1.1rem 0 0.35rem;
+}
+
+.qs-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 0.5rem;
+  background-color: var(--global-card-bg-color);
+}
+
+.qs-card > strong {
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.qs-card > span {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--global-text-color-light);
+}
+
+/* --- Education block ------------------------------------------------------ */
+
+.qs-edu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.25rem;
+  margin: 0.35rem 0 0.25rem;
+  padding-left: 0.95rem;
+  border-left: 2px solid var(--global-divider-color);
+}
+
+.qs-edu-main,
+.qs-edu-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.qs-edu-main strong {
+  font-weight: 600;
+}
+
+.qs-edu-main span,
+.qs-edu-meta span {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--global-text-color-light);
+}
+
+.qs-edu-meta {
+  text-align: right;
+}
+
+@media (max-width: 576px) {
+  .qs-edu-meta {
+    text-align: left;
+  }
+}
+
+/* --- Selected publication block ------------------------------------------ */
+
+.qs-pub {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 0.5rem;
+  background-color: var(--global-card-bg-color);
+}
+
+.qs-pub p {
+  margin-bottom: 0.4rem;
+  line-height: 1.6;
+}
+
+.qs-pub-title {
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.qs-pub-authors {
+  font-size: 0.95rem;
+}
+
+.qs-pub-venue {
+  font-size: 0.92rem;
+  color: var(--global-text-color-light);
+}
+
+.qs-pub-note {
+  margin-bottom: 0 !important;
+  font-size: 0.85rem;
+  color: var(--global-text-color-light);
+}

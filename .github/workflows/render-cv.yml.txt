@@ -1,3 +1,14 @@
+# DISABLED — renamed to .yml.txt so GitHub Actions ignores it.
+#
+# Why: this workflow installs an unpinned `rendercv[full]` and calls the old CLI
+# (`rendercv render <cv.yml> --settings <settings.yaml>`), which the current
+# RenderCV release no longer accepts, so the RenderCV step failed on every push
+# that touched `_data/cv.yml`. Its output was never used either: the CV page
+# links `assets/pdf/Qunsheng_Hou_CV.pdf`, which is maintained by hand.
+#
+# To re-enable: rename back to .yml, pin a known-good RenderCV version in
+# `requirements.txt`, and merge `assets/rendercv/settings.yaml` into the render
+# invocation for that version.
 name: Render a CV
 on:
   push:

@@ -1,9 +1,8 @@
-"AJP":
-  url: https://aapt.scitation.org/journal/ajp
-  color: "#00369f"
-
-"PhysRev":
-  url: https://journals.aps.org/
-
-"Vision":
-  color: "#009f36"
+# Venue short-name overrides used by the bibliography.
+# Empty on purpose: the template shipped demo venues (AJP, PhysRev, Vision) that
+# belong to the al-folio sample bibliography, not to this site. Add an entry here
+# only when a real venue needs a custom link or colour, e.g.
+#
+# "Adv. Mater.":
+#   url: https://advanced.onlinelibrary.wiley.com/journal/15214095
+#   color: "#1f6feb"
