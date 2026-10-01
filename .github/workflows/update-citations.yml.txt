@@ -1,3 +1,13 @@
+# DISABLED — renamed to .yml.txt so GitHub Actions ignores it.
+#
+# Why: the scheduled job re-derives `_data/citations.yml` from the
+# `scholar_userid` in `_data/socials.yml`. That ID belonged to the al-folio demo
+# author, and it has been removed along with the demo citation data, so the job
+# would either write demo data back or fail three times a week.
+#
+# To re-enable: set your own `scholar_userid` in `_data/socials.yml`, run
+# `python3 bin/update_scholar_citations.py` once locally, then rename this file
+# back to .yml.
 name: Update Google Scholar Citations
 
 on:
