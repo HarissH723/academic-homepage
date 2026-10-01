@@ -276,7 +276,6 @@ exclude:
   - assets/img/star-history-dark.svg
   - assets/img/star-history-light.svg
   - assets/img/template_error.png
-  - assets/json/resume.json
   - assets/pdf/example_pdf.pdf
   - test/
 keep_files:
@@ -727,21 +726,21 @@ third_party_libraries:
 # -----------------------------------------------------------------------------
 # Get external JSON data
 # -----------------------------------------------------------------------------
+# Removed together with `assets/json/resume.json` (the template's JSONResume
+# sample data, keyed to the demo author). The CV page renders `_data/cv.yml`
+# through `cv_format: rendercv`, so no JSONResume source is needed. To use that
+# format instead, restore both the file and these two blocks:
+#
+# jekyll_get_json:
+#   - data: resume
+#     json: assets/json/resume.json # it can also be an url
+#
+# jsonresume:
+#   - basics
+#   - work
+#   - education
+#   - publications
+#   - projects
+#   - awards
+#   - skills
 
-jekyll_get_json:
-  - data: resume
-    json: assets/json/resume.json # it can also be an url
-
-jsonresume:
-  - basics
-  - work
-  - education
-  - publications
-  - projects
-  - volunteer
-  - awards
-  - certificates
-  - skills
-  - languages
-  - interests
-  - references
