@@ -86,8 +86,7 @@ pagination:
 
                     <p class="post-meta">
                       {{ read_time }} min read &nbsp; &middot; &nbsp;
-                      <a href="{{ year | prepend: '/blog/' | relative_url }}">
-                        <i class="fa-solid fa-calendar fa-sm"></i> {{ year }} </a>
+                      <i class="fa-solid fa-calendar fa-sm"></i> {{ year }}
                     </p>
                   </div>
                 </div>
@@ -149,14 +148,12 @@ pagination:
         {% endif %}
       </p>
       <p class="post-tags">
-        <a href="{{ year | prepend: '/blog/' | relative_url }}">
-          <i class="fa-solid fa-calendar fa-sm"></i> {{ year }} </a>
+        <i class="fa-solid fa-calendar fa-sm"></i> {{ year }}
 
           {% if tags != "" %}
           &nbsp; &middot; &nbsp;
             {% for tag in post.tags %}
-            <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}">
-              <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a>
+              <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}
               {% unless forloop.last %}
                 &nbsp;
               {% endunless %}
@@ -166,8 +163,7 @@ pagination:
           {% if categories != "" %}
           &nbsp; &middot; &nbsp;
             {% for category in post.categories %}
-            <a href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}">
-              <i class="fa-solid fa-tag fa-sm"></i> {{ category }}</a>
+              <i class="fa-solid fa-tag fa-sm"></i> {{ category }}
               {% unless forloop.last %}
                 &nbsp;
               {% endunless %}
