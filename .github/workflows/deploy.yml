@@ -58,24 +58,28 @@ on:
   workflow_dispatch:
 
 # ---------------------------------------------------------------------------
-# If this workflow ever fails with
-#   Branch "main" is not allowed to deploy to github-pages due to environment
-#   protection rules.
-# then the fix is NOT in this file. `actions/deploy-pages` deploys *through* the
-# `github-pages` environment, and that environment carries a custom branch
-# policy listing the branches allowed to deploy to it. The job is rejected
-# before any step runs, which is why such a failure shows no step output.
+# Why the build and the deployment are two jobs
+# ---------------------------------------------------------------------------
+# `actions/deploy-pages` publishes through the `github-pages` environment, which
+# carries a custom branch policy listing the branches allowed to deploy. GitHub
+# creates a deployment for every job that declares `environment`, *and it does so
+# before the job's steps run*, so a single-job workflow was rejected on every pull
+# request:
 #
-#   Settings -> Environments -> github-pages -> Deployment branches and tags
+#   Branch "refs/pull/2/merge" is not allowed to deploy to github-pages due to
+#   environment protection rules.
 #
-# must list the branch being deployed (`main`). Both `main` and `gh-pages` are
+# A pull-request run has no branch that a policy could name — its ref is
+# `refs/pull/<n>/merge` — so the failure cannot be fixed in the environment
+# settings. Splitting the workflow so that the environment is declared only by a
+# job that is skipped for pull requests removes the deployment entirely on PRs:
+# a PR builds, and the deploy job reports as skipped.
+#
+# If a *push* to main ever fails with the same message, the cause is different:
+# the environment policy does not list `main`. Both `main` and `gh-pages` are
 # listed for this repository, and a workflow_dispatch run from `main` deploys
-# successfully.
-#
-# Note that Pages is configured with `build_type: workflow` (Settings -> Pages
-# -> Source: GitHub Actions), so pushing a built site to a branch — what the
-# workflow briefly did — is ignored by Pages. Only the artifact uploaded below
-# is published.
+# successfully. That is a repository setting, not a workflow one:
+#   Settings -> Environments -> github-pages -> Deployment branches and tags
 permissions:
   contents: read
   pages: write
@@ -86,10 +90,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     # available images: https://github.com/actions/runner-images#available-images
     runs-on: ubuntu-latest
     steps:
@@ -137,7 +138,18 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: _site
+
+  deploy:
+    # Skipped for pull requests on purpose: this is the only job that declares the
+    # environment, so a PR never creates a deployment to be rejected. See the note
+    # at the top of this file.
+    if: github.event_name != 'pull_request'
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to GitHub Pages
-        if: github.event_name != 'pull_request'
         id: deployment
         uses: actions/deploy-pages@v4
